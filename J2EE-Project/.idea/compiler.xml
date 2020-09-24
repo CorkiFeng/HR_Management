@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <option name="USE_RELEASE_OPTION" value="false" />
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="Dao" />
+        <module name="Manager" />
+        <module name="Model" />
+        <module name="Service" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="common-parent" target="1.8" />
+      <module name="Dao" target="1.8" />
+      <module name="Manager" target="1.8" />
+      <module name="Model" target="1.8" />
+      <module name="Service" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

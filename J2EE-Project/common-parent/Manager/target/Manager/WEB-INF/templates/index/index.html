@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<title>网站后台管理</title>
+	<link rel="stylesheet" type="text/css" href="../../static/admin/layui/css/layui.css" th:href="@{/static/admin/layui/css/layui.css}"/>
+	<link rel="stylesheet" type="text/css" href="../../static/admin/css/admin.css" th:href="@{/static/admin/css/admin.css}"/>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" th:href="@{https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css}">
+</head>
+<body >
+<div class="main-layout" id='main-layout'>
+	<!--侧边栏-->
+	<div class="main-layout-side">
+		<div class="m-logo">
+			<p class="m-logo-font">人事后台管理系统</p>
+		</div>
+		<ul class="layui-nav layui-nav-tree" lay-filter="leftNav">
+
+			<!--					员工管理-->
+			<li class="layui-nav-item layui-nav-itemed">
+				<a href="javascript:;"><i class="ui icon user"></i>用户管理</a>
+				<dl class="layui-nav-child">
+					<dd><a href="javascript:;" th:attr="data-url=@{query_all_users}" data-url="query-user.html" data-id='1' data-text="用户查询"><span class="l-line"></span>用户查询</a></dd>
+					<dd><a href="javascript:;" th:attr="data-url=@{addUser}" data-url="add-user.html" data-id='2' data-text="添加用户"><span class="l-line"></span>添加用户</a></dd>
+				</dl>
+			</li>
+			<!--					部门管理	-->
+			<li class="layui-nav-item">
+				<a href="javascript:;"><i class="ui icon sitemap"></i>部门管理</a>
+				<dl class="layui-nav-child">
+					<dd><a href="javascript:;" th:attr="data-url=@{query_all_depts}" data-url="query-dept.html" data-id='3' data-text="部门查询"><span class="l-line"></span>部门查询</a></dd>
+					<dd><a href="javascript:;"  data-url="add-dept.html" data-id='4' data-text="添加部门"><span class="l-line"></span>添加部门</a></dd>
+				</dl>
+			</li>
+			<!--					职位管理-->
+			<li class="layui-nav-item">
+				<a href="javascript:;"><i class="ui icon user circle"></i>职位管理</a>
+				<dl class="layui-nav-child">
+					<dd><a href="javascript:;" th:attr="data-url=@{query_all_work}" data-url="query-work.html" data-id='5' data-text="职位查询"><span class="l-line"></span>职位查询</a></dd>
+					<dd><a href="javascript:;" data-url="add-work.html" data-id='6' data-text="添加职位"><span class="l-line"></span>添加职位</a></dd>
+				</dl>
+			</li>
+			<!--					员工管理-->
+			<li class="layui-nav-item">
+				<a href="javascript:;"><i class="ui icon user outline"></i>员工管理</a>
+				<dl class="layui-nav-child">
+					<dd><a href="javascript:;" th:attr="data-url=@{query_all_employees}" data-url="query-worker.html" data-id='7' data-text="员工查询"><span class="l-line"></span>员工查询</a></dd>
+					<dd><a href="javascript:;" th:attr="data-url=@{query_rd}" data-url="add-worker.html" data-id='8' data-text="添加员工"><span class="l-line"></span>添加员工</a></dd>
+				</dl>
+			</li>
+			<!--					角色管理-->
+			<li class="layui-nav-item">
+				<a href="javascript:;"><i class="ui icon eye"></i>角色管理</a>
+				<dl class="layui-nav-child">
+					<dd><a href="javascript:;" th:attr="data-url=@{query_all_role/}+${session.LoginUser.roleId}" data-url="query-role.html" data-id='9' data-text="角色查询"><span class="l-line"></span>角色查询</a></dd>
+<!--					<dd><a href="javascript:;" data-url="add-role.html" data-id='10' data-text="添加角色"><span class="l-line"></span>添加角色</a></dd>-->
+				</dl>
+			</li>
+			<!--					公告管理-->
+			<li class="layui-nav-item">
+				<a href="javascript:;"><i class="ui icon sticky note outline"></i>公告管理</a>
+				<dl class="layui-nav-child">
+					<dd><a href="javascript:;" th:attr="data-url=@{query_all_notices}" data-url="query-announcement.html" data-id='11' data-text="公告查询"><span class="l-line"></span>公告查询</a></dd>
+					<dd><a href="javascript:;" data-url="add-announce.html" data-id='12' data-text="发布公告"><span class="l-line"></span>发布公告</a></dd>
+				</dl>
+			</li>
+			<!--					下载中心-->
+			<li class="layui-nav-item">
+				<a href="javascript:;"><i class="ui icon user database"></i>下载中心</a>
+				<dl class="layui-nav-child">
+					<dd><a href="javascript:;" th:attr="data-url=@{query_all_files}" data-url="download.html" data-id='13' data-text="下载资源"><span class="l-line"></span>下载</a></dd>
+					<dd><a href="javascript:;" data-url="upload.html" data-id='14' data-text="上传资源"><span class="l-line"></span>上传</a></dd>
+				</dl>
+			</li>
+		</ul>
+	</div>
+
+
+	<!--右侧内容-->
+	<div class="main-layout-container">
+		<!--头部-->
+		<div class="main-layout-header">
+			<div class="menu-btn" id="hideBtn">
+				<a href="javascript:;">
+					<span class="iconfont">&#xe60e;</span>
+				</a>
+			</div>
+			<ul class="layui-nav" lay-filter="rightNav">
+				<li class="layui-nav-item" style="width: 15em; text-align: center">
+					欢迎您，<storng><span class="m-logo-font">[[${session.LoginUser.username}]]</span></storng>
+				</li>
+				<li class="layui-nav-item" style="width: 13em; text-align: center">
+					<span id="times" class="m-logo-font" style="font-size: small;"></span>
+				</li>
+				<li class="layui-nav-item">
+<!--					th:attr="data-url=@{/user/person_msg(username=${session.LoginUser})}"-->
+					<a href="javascript:;" th:attr="data-url=@{user/person_msg(username=${session.LoginUser.username})}"  data-url="admin-info.html" data-id='15' data-text="个人信息" type="button" id="info-btn">个人信息</a>
+				</li>
+				<li class="layui-nav-item"><a href="javascript:;" th:href="@{user/loginout}" >退出</a></li>
+			</ul>
+		</div>
+		<!--主体内容-->
+		<div class="main-layout-body">
+			<!--tab 切换-->
+			<div class="layui-tab layui-tab-brief main-layout-tab" lay-filter="tab" lay-allowClose="true">
+				<ul class="layui-tab-title">
+					<li class="layui-this welcome">后台主页</li>
+				</ul>
+				<div class="layui-tab-content">
+					<div class="layui-tab-item layui-show" style="background: #f5f5f5;">
+						<!--1-->
+						<iframe src="welcome.html" th:src="@{count}" width="100%" height="100%" name="iframe" scrolling="auto" class="iframe" framborder="0"></iframe>
+						<!--1end-->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--遮罩-->
+	<div class="main-mask"></div>
+</div>
+
+<script type="text/javascript" src="../../static/admin/layui/layui.js" th:src="@{/static/admin/layui/layui.js}"></script>
+<script type="text/javascript" src="../../static/admin/js/common.js" th:src="@{/static/admin/js/common.js}"></script>
+<script type="text/javascript" src="../../static/admin/js/main.js" th:src="@{/static/admin/js/main.js}"></script>
+<script type="text/javascript" src="../static/admin/js/jquery-3.5.1.js" th:src="@{/static/admin/js/jquery-3.5.1.js}"></script>
+<script type="text/javascript">
+	var scope={
+		link:'/welcome.html'
+	};
+	//得到时间并写入div
+	function getDate(){
+		//获取当前时间
+		var date = new Date();
+		//格式化为本地时间格式
+		var date1 = date.toLocaleString();
+		//获取div
+		var div1 = document.getElementById("times");
+		//将时间写入div
+		div1.innerHTML = date1;
+	}
+	//使用定时器每秒向div写入当前时间
+	setInterval("getDate()",1000);
+
+
+</script>
+</body>
+</html>

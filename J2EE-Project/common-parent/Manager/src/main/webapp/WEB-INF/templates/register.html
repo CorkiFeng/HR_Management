@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册</title>
+    <link rel="stylesheet" type="text/css" href="../static/admin/css/bootstrap.min.css"
+          th:href="@{/static/admin/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" href="../static/admin/css/my-login.css"
+          th:href="@{/static/admin/css/my-login.css}">
+    <link rel="stylesheet" type="text/css" href="../static/admin/css/animate.css"
+          th:href="@{/static/admin/css/animate.css}">
+    <style type="text/css">
+        #code {
+            font-family: Arial;
+            font-style: italic;
+            font-weight: bold;
+            border: 0;
+            letter-spacing: 2px;
+            color: blue;
+        }
+    </style>
+</head>
+<body class="my-login-page">
+<section class="h-100">
+    <div class="container h-100">
+        <div class="row justify-content-md-center h-100">
+            <div class="card-wrapper">
+                <div class="brand animated fadeInDown">
+                    <img src="../static/images/logo.jpg" th:src="@{/static/images/logo.jpg}">
+                </div>
+                <div class="card fat animated fadeInDown">
+                    <div class="card-body">
+                        <h4 class="card-title" style="text-align: center">注册</h4>
+                        <p style="color: red;text-align: center" th:text="${msg}"
+                           th:if="${not #strings.isEmpty(msg)}"></p>
+                        <form name="dbform" method="POST" onsubmit="return false">
+                            <div class="form-group">
+                                <label for="username">注册用户名</label>
+                                <!--									注册用户名-->
+                                <input id="username" type="text" class="form-control" name="username" required
+                                       autofocus>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">输入手机号码</label>
+                                <input id="phone" onblur="check();" type="text" class="form-control" name="phone" required autofocus>
+                            </div>
+
+
+                            <label for="verifynumber">手机号码验证</label>
+                            <div class="form-group form-inline">
+                                <!--									手机验证码-->
+                                <input id="verifynumber" type="text" class="form-control form-inline"
+                                       name="verifynumber" style="width: 42%" required autofocus>
+                                <!--									<input id="btnSendCode" type="button" class="form-control" value="发送验证码" onclick="sendMessage()" />-->
+                                <a href="#" class="form-inline" style="text-decoration: none">
+                                    <input type="button" class="form-control " id="btnSendCode" name=""
+                                           style="width: 100%" value="发送验证码" onclick="sendMessage()"/>
+                                </a>
+                            </div>
+
+                            <div class="form-group">
+                                <!--									password-->
+                                <label for="password">密码</label>
+                                <input id="password" type="password" class="form-control" name="password" required
+                                       data-eye>
+                            </div>
+                            <div class="form-group no-margin">
+                                <button type="submit" onclick="Register();" class="btn btn-primary btn-block" id="submit-btn"
+                                        >
+                                    注册
+                                </button>
+                            </div>
+                            <div class="margin-top20 text-center">
+                                已有账号？ <a th:href="@{/login.html}">登录</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="footer">
+                    Copyright &copy; August 2020.7.10
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="../static/admin/js/jquery-3.5.1.js" th:src="@{/static/admin/js/jquery-3.5.1.js}"></script>
+<script src="../static/admin/js/bootstrap.js" th:src="@{/static/admin/js/bootstrap.js}"></script>
+<script src="../static/admin/js/my-register.js" th:src="@{/static/admin/js/my-register.js}"></script>
+<script type="text/javascript" th:inline="javascript">
+    var InterValObj; //timer变量，控制时间
+    var count = 60; //间隔函数，1秒执行
+    var curCount;//当前剩余秒数
+    // var basePath = [[${#httpServletRequest.getScheme() + "://" + #httpServletRequest.getServerName() + ":" + #httpServletRequest.getServerPort() + #httpServletRequest.getContextPath()}]];
+
+    function Register() {
+        $.ajax({
+           url:"user/register"
+           ,type:"POST"
+           ,data:{
+                "username" : $('#username').val(),
+                "phone" : $('#phone').val(),
+                "password" : $('#password').val(),
+                "verifynumber" : $('#verifynumber').val()
+            }
+           ,dataType:"json"
+           , success:function (data) {
+                if (data == 1){
+                    window.location.href = "login.html";
+                }else if(data == 0){
+                    alert("该账号已被注册，请重新尝试！");
+                    window.location.href = "register.html";
+                }
+                else if(data == -1){
+                    alert("手机号码非法，请重新输入");
+                    window.location.href = "register.html";
+                }else if(data == -2){
+                    alert("手机验证失败，请重新尝试！")
+                    window.location.href = "register.html";
+                }else{
+                    alert("账号注册失败，请重新尝试！");
+                    window.location.href = "register.html";
+                }
+            }
+        });
+    }
+
+
+    function sendMessage() {
+        var phone = $("#phone").val();
+        curCount = count;
+        //设置button效果，开始计时
+        $("#btnSendCode").attr("disabled", "true");
+        $("#btnSendCode").val("请在" + curCount + "秒内输入验证码");
+        InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+        $.ajax({
+            type: "POST" //用POST方式传输
+            ,url: "verify"//目标地址
+            ,data:{
+                "phone" : phone
+            }
+        });
+
+    }
+
+    //timer处理函数
+    function SetRemainTime() {
+        if (curCount == 0) {
+            window.clearInterval(InterValObj);//停止计时器
+            $("#btnSendCode").removeAttr("disabled");//启用按钮
+            $("#btnSendCode").val("重新发送验证码");
+        } else {
+            curCount--;
+            $("#btnSendCode").val("请在" + curCount + "秒内输入验证码");
+        }
+    }
+
+    function check() {
+        var regNumber = /^[1-9]+[0-9]*]*$/;
+        var phone = $("#phone").val();
+        if (!regNumber.test(phone) || phone.length != 11){
+            alert("手机号码输入有误");
+            return false;
+        }
+    }
+
+
+
+
+</script>
+</body>
+</html>

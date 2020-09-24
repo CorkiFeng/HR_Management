@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebContextManager">
+    <option name="state">
+      <map>
+        <entry key="file://$PROJECT_DIR$/common-parent/Manager/src/main/webapp/WEB-INF/templates/find.html" value="file://$PROJECT_DIR$/common-parent/Manager/src/main/webapp/WEB-INF/templates" />
+        <entry key="file://$PROJECT_DIR$/common-parent/Manager/src/main/webapp/WEB-INF/templates/index/index.html" value="file://$PROJECT_DIR$/common-parent/Manager/src/main/webapp/WEB-INF/templates/index" />
+        <entry key="file://$PROJECT_DIR$/common-parent/Manager/src/main/webapp/WEB-INF/templates/index/notice_detail.html" value="file://$PROJECT_DIR$/common-parent/Manager/src/main/webapp/WEB-INF/templates/index" />
+      </map>
+    </option>
+  </component>
+</project>
