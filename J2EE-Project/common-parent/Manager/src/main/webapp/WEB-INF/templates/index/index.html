@@ -55,7 +55,7 @@
 			<li class="layui-nav-item">
 				<a href="javascript:;"><i class="ui icon eye"></i>角色管理</a>
 				<dl class="layui-nav-child">
-					<dd><a href="javascript:;" th:attr="data-url=@{query_all_role/}${session.LoginUser.roleId}" data-url="query-role.html" data-id='9' data-text="角色查询"><span class="l-line"></span>角色查询</a></dd>
+					<dd><a href="javascript:;" th:attr="data-url=@{query_all_role/}+${session.LoginUser.roleId}" data-url="query-role.html" data-id='9' data-text="角色查询"><span class="l-line"></span>角色查询</a></dd>
 <!--					<dd><a href="javascript:;" data-url="add-role.html" data-id='10' data-text="添加角色"><span class="l-line"></span>添加角色</a></dd>-->
 				</dl>
 			</li>

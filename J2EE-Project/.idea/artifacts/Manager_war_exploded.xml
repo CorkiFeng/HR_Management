@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="Manager:war exploded">
-    <output-path>$PROJECT_DIR$/common-parent/Manager/target/Manager</output-path>
+    <output-path>D:/Tomcat/apache-tomcat-8.5.45/webapps/common-parent</output-path>
     <properties id="maven-jee-properties">
       <options>
         <exploded>true</exploded>
