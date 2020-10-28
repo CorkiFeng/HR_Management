@@ -31,6 +31,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    public int update(Employee employee) {
+        return employeeMapper.updateByPrimaryKey(employee);
+    }
+    @Override
     public int deleteByPrimaryKey(int id) {
         return employeeMapper.deleteByPrimaryKey(id);
     }
@@ -67,6 +71,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public List<Employee> selectByExample(EmployeeExample example) {
         return employeeMapper.selectByExample(example);
+    }
+
+    @Override
+    public Employee selectById(Integer id) {
+        return employeeMapper.selectByPrimaryKey(id);
     }
 
 }

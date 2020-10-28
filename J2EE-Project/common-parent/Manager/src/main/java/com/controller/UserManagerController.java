@@ -151,16 +151,18 @@ public class UserManagerController {
 
     }
 
-    @PostMapping("/modify_role/{number}")
-    public String ModifyRole(@PathVariable("number") Integer number, User user){
-        User user1 = new User();
-        user1.setRoleId(user.getRoleId());
-        UserExample example = new UserExample();
-        UserExample.Criteria criteria = example.createCriteria();
-        criteria.andNumberEqualTo(number);
-        userService.updateByExampleSelective(user1,example);
-
-        return "redirect:/query_all_users";
+    @PostMapping("/modify_role")
+    @ResponseBody
+    public String ModifyRole(@RequestParam("number") Integer number,
+                             @RequestParam("role_id") Integer role_id){
+        User user = userService.selectByPrimaryKey(number);
+        user.setRoleId(role_id);
+        int i = userService.updateByPrimaryKey(user);
+        if(i == 1){
+            return "1";
+        }else{
+            return "0";
+        }
     }
 
 

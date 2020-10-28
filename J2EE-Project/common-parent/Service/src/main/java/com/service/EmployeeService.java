@@ -11,6 +11,8 @@ public interface EmployeeService {
 
     int insert(Employee employee);
 
+    int update(Employee employee);
+
     int deleteByPrimaryKey(int id);
 
     List<Employee> findAllEmployee();
@@ -24,4 +26,6 @@ public interface EmployeeService {
     int deleteByExample(EmployeeExample example);
 
     List<Employee> selectByExample(EmployeeExample example);
+
+    Employee selectById(Integer id);
 }

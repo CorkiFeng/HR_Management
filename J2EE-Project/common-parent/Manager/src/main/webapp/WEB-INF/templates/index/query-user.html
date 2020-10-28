@@ -89,19 +89,19 @@
 	</form>
 
 </div>
-<div style="display: none" id="text" th:each="users:${users}">
-	<form th:action="@{/modify_role/}+${users.number}" action="#" method="post" class="layui-form">
+<div style="display: none" id="text">
+	<form onsubmit="return false" action="#" method="post" class="layui-form">
 		<div class="layui-form-item">
 			<div class="layui-form-item" style="padding-top: 5em;width: 80%">
 				<label class="layui-form-label">修改权限：</label>
 				<div class="layui-input-block">
-					<select name="roleId" >
+					<select id="sel" name="roleId" >
 						<option value="">请选择权限</option>
 						<option th:value="${roles.rid}" th:each="roles:${roles}" th:text="${roles.rname}" value=""></option>
 					</select>
 				</div>
 				<div class="layui-input-block"  style="padding-top: 4em">
-					<button class="layui-btn layui-btn-normal"  style="float: right;margin-right: 1em">立即提交</button>
+					<button type="submit" class="layui-btn layui-btn-normal" onclick="modify_Role()"  style="float: right;margin-right: 1em">立即提交</button>
 				</div>
 			</div>
 		</div>
@@ -110,6 +110,7 @@
 <script src="../../static/admin/js/jquery-3.5.1.js" th:src="@{/static/admin/js/jquery-3.5.1.js}"></script>
 <script src="../../static/admin/layui2.0/layui.all.js" th:src="@{/static/admin/layui2.0/layui.all.js}" type="text/javascript" charset="utf-8"></script>
 <script th:align="javascript">
+	let id;
 	$(".delete_btn").click(function () {
 
 		$("#del_form").attr("action",$(this).attr("del_url")).submit();
@@ -129,7 +130,8 @@
 		for (var i = 0;i< tr.length;i++){
 			tr[i].onclick = function () {
 				var thisTR = this.innerHTML;
-				var id = $(this).children().eq(1).text();
+				id = $(this).children().eq(1).text();
+
 
 				layer.open({
 					type: 1,
@@ -138,28 +140,34 @@
 					content: $('#text')
 				});
 
-
-
-				// $.ajax({
-				// 	url:"modify_role"
-				// 	,data:{
-				// 		"id" : id
-				// 	}
-				// 	,type:"post"
-				// 	,dataType:"json"
-				// 	,success:function (data) {
-				// 		if (data == 1){
-				// 			window.location.href = "index.html";
-				// 		}else{
-				// 			alert("修改失败！");
-				// 		}
-				// 	}
-				// })
-
 			}
 		}
 
 
+	}
+
+	function modify_Role() {
+		var sel = document.getElementById("sel");
+		var role_id = sel.value;
+		// var options = sel.options;
+		// var index = sel.selectedIndex;
+		// var role_id = options[index].value;
+			$.ajax({
+				url:"modify_role"
+				,data:{
+					"number" : id,
+					"role_id" : role_id
+				}
+				,type:"post"
+				,dataType:"json"
+				,success:function (data) {
+					if (data == 1){
+						top.location.href="index.html";
+					}else{
+						alert("修改失败！");
+					}
+				}
+			})
 	}
 
 

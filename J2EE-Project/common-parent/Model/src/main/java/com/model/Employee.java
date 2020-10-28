@@ -45,6 +45,7 @@ public class Employee {
 
     private String remark;
 
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date createDate;
 
     private Dept dept;

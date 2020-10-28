@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="Manager:war" />
       <artifact name="Manager:war exploded" />
     </artifacts-to-build>
   </component>
@@ -85,23 +84,23 @@
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\360MoveData\Users\acer\Desktop\J2EE-Project\common-parent\Manager\src\main\webapp\WEB-INF\templates\index" />
-      <recent name="D:\360MoveData\Users\acer\Desktop\J2EE-Project\common-parent\Manager\src\main\webapp" />
-      <recent name="D:\360MoveData\Users\acer\Desktop\J2EE-Project\common-parent\Manager\src\main\webapp\WEB-INF" />
-      <recent name="D:\360MoveData\Users\acer\Desktop\J2EE-Project\common-parent\Manager\src\main\webapp\static\admin\lib\editormd\css" />
-      <recent name="D:\360MoveData\Users\acer\Desktop\J2EE-Project\common-parent\Manager\src\main\webapp\static\admin\lib" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.controller" />
-      <recent name="com.controller.com.other" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\360MoveData\Users\acer\Desktop\J2EE-Project\common-parent\Manager\src\main\java\com\controller\utils" />
       <recent name="D:\360MoveData\Users\acer\Desktop\J2EE-Project\common-parent\Manager\src\main\java\com\controller" />
       <recent name="D:\360MoveData\Users\acer\Desktop\J2EE-Project\common-parent\Manager\src\main\webapp\WEB-INF\templates\index" />
       <recent name="D:\360MoveData\Users\acer\Desktop\J2EE-Project\common-parent\Manager\src\main\webapp\WEB-INF\static\admin\lib\editormd\lib\codemirror" />
       <recent name="D:\360MoveData\Users\acer\Desktop\J2EE-Project\common-parent\Manager\src\main\webapp\WEB-INF\static\admin\lib" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.controller" />
+      <recent name="com.controller.com.other" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\360MoveData\Users\acer\Desktop\J2EE-Project\common-parent\Manager\src\main\webapp\WEB-INF\templates\index" />
+      <recent name="D:\360MoveData\Users\acer\Desktop\J2EE-Project\common-parent\Manager\src\main\webapp" />
+      <recent name="D:\360MoveData\Users\acer\Desktop\J2EE-Project\common-parent\Manager\src\main\webapp\WEB-INF" />
+      <recent name="D:\360MoveData\Users\acer\Desktop\J2EE-Project\common-parent\Manager\src\main\webapp\static\admin\lib\editormd\css" />
+      <recent name="D:\360MoveData\Users\acer\Desktop\J2EE-Project\common-parent\Manager\src\main\webapp\static\admin\lib" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -116,7 +115,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Test">
+  <component name="RunManager" selected="Tomcat Server.Tomcat 8.5.45">
     <configuration name="Message" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.controller.com.other.Message" />
       <module name="Manager" />
@@ -446,6 +445,8 @@
       <workItem from="1595214722417" duration="37855000" />
       <workItem from="1595310188389" duration="3106000" />
       <workItem from="1595314411967" duration="8628000" />
+      <workItem from="1603810338669" duration="28853000" />
+      <workItem from="1603873452408" duration="619000" />
     </task>
     <servers />
   </component>

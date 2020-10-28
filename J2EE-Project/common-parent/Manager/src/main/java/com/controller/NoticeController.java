@@ -70,11 +70,7 @@ public class NoticeController {
 
     @PostMapping("detail_notices")
     @ResponseBody
-    public String DetailNotice(@RequestParam("id") Integer id,Model model){
-//        NoticeExample noticeExample = new NoticeExample();
-//        NoticeExample.Criteria criteria = noticeExample.createCriteria();
-//        criteria.andIdEqualTo(id);
-//        List<Notice> notices = noticeService.selectByExample(noticeExample);
+    public String DetailNotice(@RequestParam("id") Integer id){
         Notice notice = noticeService.findById(id);
 
         JSONArray jsonArray = new JSONArray();
@@ -83,11 +79,6 @@ public class NoticeController {
         jo.put("name", notice.getUsename());
         jo.put("content", notice.getContent());
         jsonArray.add(jo);
-
-//        model.addAttribute("detail",notice);
-//        System.out.println("===================="+jsonArray.toString());
         return jsonArray.toString();
-//        return jsonArray;
-//        return "index/notice_detail";
     }
 }
