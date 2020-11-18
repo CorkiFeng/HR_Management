@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>登录</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../admin/css/bootstrap.min.css" th:href="@{/admin/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" href="../admin/css/my-login.css" th:href="@{/admin/css/my-login.css}">
+    <link rel="stylesheet" type="text/css" href="../admin/css/animate.css" th:href="@{/admin/css/animate.css}">
+    <style type="text/css">
+        #code {
+            font-family: Arial;
+            font-style: italic;
+            font-weight: bold;
+            border: 0;
+            letter-spacing: 2px;
+            color: blue;
+        }
+    </style>
+</head>
+<body class="my-login-page">
+<section class="h-100">
+    <div class="container h-100">
+        <div class="row justify-content-md-center h-100">
+            <div class="card-wrapper">
+                <div class="brand animated fadeInDown">
+                    <img th:src="@{/images/logo.jpg}">
+                </div>
+                <div class="card fat animated fadeInDown">
+                    <div class="card-body">
+                        <h4 class="card-title" style="text-align: center">登录</h4>
+                        <p style="color: red;text-align: center" th:text="${msg}"
+                           th:if="${not #strings.isEmpty(msg)}"></p>
+                        <form id="dbform" name="dbform" onsubmit="return false" method="POST" >
+
+                            <div class="form-group">
+                                <label for="id">登录账号</label>
+                                <!--登录 id 输入框-->
+                                <input id="id" type="text" class="form-control" name="id" value="" autofocus
+                                       placeholder="用户名/手机号码">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">密码</label>
+                                <!--密码输入框	-->
+                                <input id="password" type="password" class="form-control" name="password" data-eye>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="code_input">验证码</label>
+                                <!--验证码		-->
+                                <div class="form-inline">
+                                    <input id="code_input" type="text" class="form-control" name="ctl00_txtcode"
+                                           style="width: 60%; margin-right: 0.8em">
+                                    <span id="v_container" style="width: 30%;height: 110%"></span>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group"><label></label></div>
+                            <div class="form-group no-margin">
+                                <button type="submit" class="btn btn-primary btn-block" id="login-btn"
+                                        onclick="check();">
+                                    登录
+                                </button>
+                            </div>
+                            <div class="margin-top20 text-center">
+                                <a th:href="@{/register.html}">注册账号</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="footer">
+                    Copyright &copy; August 2020.7.10
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="../admin/js/jquery-3.5.1.js" th:src="@{/admin/js/jquery-3.5.1.js}"></script>
+<script src="../admin/js/bootstrap.js" th:src="@{/admin/js/bootstrap.js}"></script>
+<script src="../admin/js/my-login.js" th:src="@{/admin/js/my-login.js}"></script>
+<script th:inline="javascript">
+    var verifyCode = new GVerify("v_container");
+    function check () {
+        var res = verifyCode.validate(document.getElementById("code_input").value);
+
+        if(res){
+            // document.dbform.action="/user/login";
+            // dbform.submit();
+            // $("#dbform").attr("action","/user/login").submit();
+            $.ajax({
+               url:"user/login"
+               ,data:$("#dbform").serialize()
+               ,type:"post"
+               ,dataType:"json"
+               ,success:function (data) {
+                    if (data == 1){
+                        window.location.href = "index.html"
+                    }else{
+                        alert("用户名密码错误");
+                        window.location.href = "login.html"
+                    }
+                }
+            });
+        }else{
+            alert("验证码错误");
+            $("#code_input").val("");
+            createCode();
+        }
+
+    }
+
+
+</script>
+
+
+</body>
+</html>
